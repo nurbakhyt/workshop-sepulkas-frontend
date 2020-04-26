@@ -1,12 +1,31 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/sepulkas">Sepulkas</router-link>
+      <router-link :to="{ name: 'Home' }">Home</router-link> |
+      <router-link
+        v-if="token"
+        :to="{ name: 'Sepulkas' }"
+      >
+        Sepulkas
+      </router-link>
+      <router-link
+        v-else
+        :to="{ name: 'Login' }"
+      >
+        Login
+      </router-link>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+
+export default {
+  computed: mapGetters('auth', ['token']),
+};
+</script>
 
 <style lang="scss">
 #app {

@@ -1,5 +1,4 @@
 import Vue from 'vue';
-// import axios from '../../services/http';
 
 export default {
   namespaced: true,

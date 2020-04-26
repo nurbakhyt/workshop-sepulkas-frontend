@@ -50,7 +50,9 @@ export default {
       //
       // debugger;
       // console.log(access);
-      this.login(this.$data);
+      await this.login(this.$data);
+
+      this.$router.push({ name: 'Sepulkas' });
     },
   },
 };
