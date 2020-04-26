@@ -1,4 +1,5 @@
-import axios from '@/services/http';
+import Vue from 'vue';
+// import axios from '../../services/http';
 
 export default {
   namespaced: true,
@@ -9,8 +10,8 @@ export default {
     sepulkas: (state) => state.sepulkas,
   },
   actions: {
-    GET_SEPULKAS: async ({ commit }) => {
-      const response = await axios.get('/api/v1/sepulkas');
+    fetchSepulkas: async ({ commit }) => {
+      const response = await Vue.$axios.get('/api/v1/sepulkas/');
 
       commit('SET_LIST', response.data);
     },

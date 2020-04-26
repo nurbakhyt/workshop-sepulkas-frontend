@@ -26,10 +26,10 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   computed: mapGetters('sepulkas', ['sepulkas']),
   methods: mapActions('sepulkas', [
-    'GET_SEPULKAS',
+    'fetchSepulkas',
   ]),
   mounted() {
-    this.GET_SEPULKAS();
+    this.fetchSepulkas();
   },
 };
 </script>
