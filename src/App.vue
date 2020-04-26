@@ -1,39 +1,52 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link
-        v-if="token"
-        :to="{ name: 'Sepulkas' }"
-      >
-        Sepulkas
-      </router-link>
-      <router-link
-        v-else
-        :to="{ name: 'Login' }"
-      >
-        Login
-      </router-link>
+      <template v-if="token">
+        <router-link :to="{ name: 'Home' }">Home</router-link> |
+        <router-link :to="{ name: 'Sepulkas' }">Sepulkas</router-link> |
+        <a
+          class="router-link-exact-active router-link-active"
+          href=""
+          @click.prevent="logOut"
+        >
+          Logout
+        </a>
+      </template>
     </div>
     <router-view/>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   computed: mapGetters('auth', ['token']),
+  methods: {
+    ...mapActions('auth', ['logout']),
+    async logOut() {
+      this.logout();
+
+      this.$router.push({ name: 'Login' });
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+* {
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 360px;
 }
 
 #nav {
